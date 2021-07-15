@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slide</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      ul {
+        list-style: none;
+      }
+      .icon {
+        /* filter: drop-shadow(0 0 0 red); */
+        filter: invert(14%) sepia(92%) saturate(5618%) hue-rotate(1deg) brightness(101%) contrast(119%);
+      }
+
+      .slide {
+        width: 500px;
+        display: flex;
+        overflow-x: scroll;
+      }
+
+      .item {
+        padding: 10px;
+        width: 200px;
+        flex-shrink: 0;
+        border: 1px solid black;
+        border-radius: 999px;
+      }
+    </style>
+  </head>
+  <body>
+    <img class="icon" src="./send.png" alt="" />
+    <div class="container">
+      <ul class="slide">
+        <li class="item">item1</li>
+        <li class="item">item2</li>
+        <li class="item">item3</li>
+        <li class="item">item4</li>
+        <li class="item">item5</li>
+      </ul>
+    </div>
+  </body>
+</html>
