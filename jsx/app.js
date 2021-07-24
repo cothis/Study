@@ -5,7 +5,10 @@ const jsx = (templates, ...args) => {
 const html = jsx;
 
 const lit = 'hihi everyone';
-const html = html`<div>안녕하세요 ${lit} {name}님 {welcome}</div>`;
+const html = html`<div>
+  안녕하세요 ${lit} {name}님 {welcome}
+  <h1>자동완성도 되네요~</h1>
+</div>`;
 
 class TestView {
   constructor({ app }) {
