@@ -8,6 +8,8 @@ const lit = 'hihi everyone';
 const myhtml = html`<div>
   안녕하세요 ${lit} {name}님 {welcome}
   <h1>자동완성도 되네요~</h1>
+  <input type="text" />
+  <button>입력 후 클릭해보세요</button>
 </div>`;
 
 class TestView {
@@ -15,6 +17,8 @@ class TestView {
     this.root = app;
     this.data = {};
     Object.assign(this.data, this.#data());
+
+    console.log(this);
   }
 
   #data() {
@@ -24,8 +28,13 @@ class TestView {
     };
   }
 
-  setData({ data }) {
-    this.data = { ...this.data };
+  setData(data) {
+    this.data = { ...this.data, ...data };
+    this.render();
+  }
+
+  onClick(e) {
+    this.setData({ name: e.target.previousElementSibling.value });
   }
 
   inject(str) {
@@ -34,6 +43,8 @@ class TestView {
 
   render() {
     this.root.innerHTML = this.inject(jsx`${myhtml}`);
+
+    this.root.querySelector('button').addEventListener('click', this.onClick.bind(this));
   }
 }
 
