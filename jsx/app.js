@@ -1,4 +1,9 @@
-let html = '<div>안녕하세요 {name}님 {welcome}</div>';
+const jsx = (templates, ...args) => {
+  return templates.map((template, i) => `${template}${args[i] ?? ''}`).join('');
+};
+
+const lit = 'hihi everyone';
+const html = jsx`<div>안녕하세요 ${lit} {name}님 {welcome}</div>`;
 
 class TestView {
   constructor({ app }) {
@@ -13,16 +18,12 @@ class TestView {
     };
   }
 
-  jsx(templates, ...args) {
-    return this.inject(templates.map((template, i) => `${template}${args[i] ?? ''}`).join(''));
-  }
-
   inject(str) {
     return str.replace(/{(.*?)}/g, (_, g) => this[g]);
   }
 
   render() {
-    this.root.innerHTML = this.jsx`${html}`;
+    this.root.innerHTML = this.inject(jsx`${html}`);
   }
 }
 
