@@ -5,7 +5,7 @@ const jsx = (templates, ...args) => {
 const html = jsx;
 
 const lit = 'hihi everyone';
-const html = html`<div>
+const myhtml = html`<div>
   안녕하세요 ${lit} {name}님 {welcome}
   <h1>자동완성도 되네요~</h1>
 </div>`;
@@ -13,22 +13,27 @@ const html = html`<div>
 class TestView {
   constructor({ app }) {
     this.root = app;
-    Object.assign(this, this.#data());
+    this.data = {};
+    Object.assign(this.data, this.#data());
   }
 
   #data() {
     return {
-      name: '인규',
+      name: '여러분',
       welcome: '반갑습니다',
     };
   }
 
+  setData({ data }) {
+    this.data = { ...this.data };
+  }
+
   inject(str) {
-    return str.replace(/{(.*?)}/g, (_, g) => this[g]);
+    return str.replace(/{(.*?)}/g, (_, g) => this.data[g]);
   }
 
   render() {
-    this.root.innerHTML = this.inject(jsx`${html}`);
+    this.root.innerHTML = this.inject(jsx`${myhtml}`);
   }
 }
 
