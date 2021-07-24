@@ -2,8 +2,10 @@ const jsx = (templates, ...args) => {
   return templates.map((template, i) => `${template}${args[i] ?? ''}`).join('');
 };
 
+const html = jsx;
+
 const lit = 'hihi everyone';
-const html = jsx`<div>안녕하세요 ${lit} {name}님 {welcome}</div>`;
+const html = html`<div>안녕하세요 ${lit} {name}님 {welcome}</div>`;
 
 class TestView {
   constructor({ app }) {
